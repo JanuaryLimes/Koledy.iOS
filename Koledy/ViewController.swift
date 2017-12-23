@@ -8,8 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listaKoled.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as UITableViewCell
+        
+        cell.textLabel?.text = "\(listaKoled[indexPath.row].nazwa ?? "")"
+        
+        return cell;
+    }
+    
 
+    @IBOutlet weak var table: UITableView!
     let assetName = "Data"
     var listaKoled = [Koleda]()
     
@@ -19,6 +32,9 @@ class ViewController: UIViewController {
         
         let teksty = readBundle(file: assetName)
         listaKoled = readXml(from: teksty)
+        
+        table.dataSource = self
+        table.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
