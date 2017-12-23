@@ -14,17 +14,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as UITableViewCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = "\(listaKoled[indexPath.row].nazwa ?? "")"
-        
         return cell;
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+        performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueIdentifier {
+            if let destinationVC = segue.destination as? SingleViewController {
+                destinationVC.currentElement = listaKoled[selectedIndex]
+            }
+        }
+    }
+    
     @IBOutlet weak var table: UITableView!
     let assetName = "Data"
+    let segueIdentifier = "ShowSingle"
     var listaKoled = [Koleda]()
+    var selectedIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +48,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         table.dataSource = self
         table.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     func readBundle(file:String) -> String
     {
         var res = ""
@@ -100,7 +112,9 @@ class KoledaXmlParserDelegate: NSObject, XMLParserDelegate {
         case .nazwa:
             self.nowaKoleda!.nazwa = "\(self.nowaKoleda!.nazwa ?? "")\(string)"
         case .tekst:
-            self.nowaKoleda!.tekst = "\(self.nowaKoleda!.tekst ?? "")\(string)"
+            var trimmed = string
+            trimmed.removingRegexMatches(pattern: "[ ]{2,}")
+            self.nowaKoleda!.tekst = "\(self.nowaKoleda!.tekst ?? "")\(trimmed)"
         default:
             break
         }
@@ -109,4 +123,46 @@ class KoledaXmlParserDelegate: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
     }
 }
+
+class SingleViewController: UIViewController{
+    
+    var currentElement : Koleda?
+    
+    @IBAction func backClicked(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    @IBOutlet weak var tekst: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        //currentElement?.tekst?.removingRegexMatches(pattern: "[ ]{2,}")
+        
+        tekst.isEditable = false
+        tekst.isSelectable = false
+        tekst.text = currentElement?.tekst ?? ""
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.tekst.setContentOffset(.zero, animated: false)
+    }
+}
+
+extension String {
+    mutating func removingRegexMatches(pattern: String, replaceWith: String = "") {
+        do {
+            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
+            let range = NSMakeRange(0, self.count)
+            self = regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replaceWith)
+        } catch {
+            return
+        }
+    }
+}
+
 

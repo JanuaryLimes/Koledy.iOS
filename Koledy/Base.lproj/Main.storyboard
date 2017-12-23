@@ -44,11 +44,58 @@
                     </view>
                     <connections>
                         <outlet property="table" destination="epY-Zt-21i" id="yWZ-LT-3ZU"/>
+                        <segue destination="GOr-y6-0I8" kind="show" identifier="ShowSingle" id="PNJ-OJ-41X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
+        </scene>
+        <!--Single View Controller-->
+        <scene sceneID="RfL-SR-BKE">
+            <objects>
+                <viewController id="GOr-y6-0I8" customClass="SingleViewController" customModule="Koledy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Esk-0Z-eDh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brb-Wt-BUF">
+                                <rect key="frame" x="8" y="20" width="308" height="30"/>
+                                <state key="normal" title="Wstecz"/>
+                                <connections>
+                                    <action selector="backClicked:" destination="GOr-y6-0I8" eventType="primaryActionTriggered" id="GNI-mw-hGy"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cd1-BH-nkT">
+                                <rect key="frame" x="4" y="50" width="312" height="514"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="M3C-ch-kOy" firstAttribute="bottom" secondItem="cd1-BH-nkT" secondAttribute="bottom" constant="4" id="0v1-X2-siH"/>
+                            <constraint firstItem="cd1-BH-nkT" firstAttribute="leading" secondItem="M3C-ch-kOy" secondAttribute="leading" constant="4" id="9Fy-wb-fm7"/>
+                            <constraint firstItem="M3C-ch-kOy" firstAttribute="trailing" secondItem="Brb-Wt-BUF" secondAttribute="trailing" constant="4" id="UwD-D2-OH8"/>
+                            <constraint firstItem="cd1-BH-nkT" firstAttribute="top" secondItem="Brb-Wt-BUF" secondAttribute="bottom" id="cQy-hs-EDr"/>
+                            <constraint firstItem="Brb-Wt-BUF" firstAttribute="leading" secondItem="M3C-ch-kOy" secondAttribute="leading" constant="8" id="eKU-Zq-dC4"/>
+                            <constraint firstItem="M3C-ch-kOy" firstAttribute="trailing" secondItem="cd1-BH-nkT" secondAttribute="trailing" constant="4" id="oFj-Mp-9Jr"/>
+                            <constraint firstItem="Brb-Wt-BUF" firstAttribute="top" secondItem="M3C-ch-kOy" secondAttribute="top" id="xtp-aG-EKI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="M3C-ch-kOy"/>
+                    </view>
+                    <connections>
+                        <outlet property="tekst" destination="cd1-BH-nkT" id="6yk-EZ-qU8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dBv-hF-Xh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1031.25" y="143.66197183098592"/>
         </scene>
     </scenes>
 </document>
