@@ -12,6 +12,7 @@
 		E7FABCF81FEEBE5E006C27B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7FABCF61FEEBE5E006C27B4 /* Main.storyboard */; };
 		E7FABCFA1FEEBE5E006C27B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7FABCF91FEEBE5E006C27B4 /* Assets.xcassets */; };
 		E7FABCFD1FEEBE5E006C27B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7FABCFB1FEEBE5E006C27B4 /* LaunchScreen.storyboard */; };
+		E7FABD081FEECACE006C27B4 /* Koleda.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FABD071FEECACE006C27B4 /* Koleda.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E7FABCF91FEEBE5E006C27B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7FABCFC1FEEBE5E006C27B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E7FABCFE1FEEBE5E006C27B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7FABD071FEECACE006C27B4 /* Koleda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koleda.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		E7FABCF11FEEBE5E006C27B4 /* Koledy */ = {
 			isa = PBXGroup;
 			children = (
+				E7FABD061FEECAB0006C27B4 /* Model */,
 				E7FABCF21FEEBE5E006C27B4 /* AppDelegate.swift */,
 				E7FABCF41FEEBE5E006C27B4 /* ViewController.swift */,
 				E7FABCF61FEEBE5E006C27B4 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				E7FABCFE1FEEBE5E006C27B4 /* Info.plist */,
 			);
 			path = Koledy;
+			sourceTree = "<group>";
+		};
+		E7FABD061FEECAB0006C27B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E7FABD071FEECACE006C27B4 /* Koleda.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7FABD081FEECACE006C27B4 /* Koleda.swift in Sources */,
 				E7FABCF51FEEBE5E006C27B4 /* ViewController.swift in Sources */,
 				E7FABCF31FEEBE5E006C27B4 /* AppDelegate.swift in Sources */,
 			);
