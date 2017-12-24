@@ -29,18 +29,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as UITableViewCell
-        
         if let koledy = filteredItems {
             let koleda = koledy[indexPath.row]
             cell.textLabel!.text = koleda.nazwa
         }
-        
-        //cell.textLabel?.text = "\(listaKoled[indexPath.row].nazwa ?? "")"
         return cell;
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndex = indexPath.row
+        searchController.searchBar.setShowsCancelButton(false, animated: true)
+        
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     
@@ -72,31 +71,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         table.dataSource = self
         table.delegate = self
-    }
-    
-    func setupNavBar(){
-        //navigationController?.navigationBar.prefersLargeTitles = true
-    
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        //searchController.searchBar.becomeFirstResponder()
-        
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        table.keyboardDismissMode = .interactive
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        searchController.becomeFirstResponder()
+        if  searchController.isActive{
+            searchController.searchBar.setShowsCancelButton(true, animated: true)
+        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        searchController.dismiss(animated: false, completion: nil)
+    func setupNavBar(){
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        
+        definesPresentationContext = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func readBundle(file:String) -> String
