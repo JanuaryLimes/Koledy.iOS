@@ -47,6 +47,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         table.dataSource = self
         table.delegate = self
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -135,6 +137,8 @@ class SingleViewController: UIViewController{
         
         self.tekst.text = currentElement?.tekst ?? ""
         self.title = currentElement?.nazwa ?? ""
+        
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     override func didReceiveMemoryWarning() {
