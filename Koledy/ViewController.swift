@@ -59,6 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var allItems : [Koleda]?
     var filteredItems : [Koleda]?
     var selectedIndex = -1
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,12 +75,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func setupNavBar(){
-        navigationController?.navigationBar.prefersLargeTitles = true
-        let searchController = UISearchController(searchResultsController: nil)
+        //navigationController?.navigationBar.prefersLargeTitles = true
+    
         searchController.searchResultsUpdater = self
-        //self.defin
+        searchController.dimsBackgroundDuringPresentation = false
+        //searchController.searchBar.becomeFirstResponder()
+        
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        searchController.becomeFirstResponder()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.dismiss(animated: false, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
