@@ -8,14 +8,34 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            filteredItems = allItems?.filter{ koleda in
+                return koleda.nazwa?.lowercased().contains(searchText.lowercased()) ?? false
+            }
+        } else {
+            filteredItems = allItems
+        }
+        table.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listaKoled.count
+        guard let koledy = filteredItems else {
+            return 0
+        }
+        return koledy.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = "\(listaKoled[indexPath.row].nazwa ?? "")"
+        
+        if let koledy = filteredItems {
+            let koleda = koledy[indexPath.row]
+            cell.textLabel!.text = koleda.nazwa
+        }
+        
+        //cell.textLabel?.text = "\(listaKoled[indexPath.row].nazwa ?? "")"
         return cell;
     }
     
@@ -27,7 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
             if let destinationVC = segue.destination as? SingleViewController {
-                destinationVC.currentElement = listaKoled[selectedIndex]
+                destinationVC.currentElement = filteredItems?[selectedIndex]
             }
         }
     }
@@ -36,19 +56,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let assetName = "Data"
     let segueIdentifier = "ShowSingle"
     var listaKoled = [Koleda]()
+    var allItems : [Koleda]?
+    var filteredItems : [Koleda]?
     var selectedIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        setupNavBar()
         
         let teksty = readBundle(file: assetName)
         listaKoled = readXml(from: teksty)
+        allItems = listaKoled
+        filteredItems = allItems
         
         table.dataSource = self
         table.delegate = self
-        
+    }
+    
+    func setupNavBar(){
         navigationController?.navigationBar.prefersLargeTitles = true
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        //self.defin
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,6 +165,7 @@ class SingleViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         self.tekst.text = currentElement?.tekst ?? ""
         self.title = currentElement?.nazwa ?? ""
