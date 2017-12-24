@@ -128,20 +128,13 @@ class SingleViewController: UIViewController{
     
     var currentElement : Koleda?
     
-    @IBAction func backClicked(_ sender: UIButton) {
-        dismiss(animated: true)
-    }
-    
     @IBOutlet weak var tekst: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //currentElement?.tekst?.removingRegexMatches(pattern: "[ ]{2,}")
         
-        tekst.isEditable = false
-        tekst.isSelectable = false
-        tekst.text = currentElement?.tekst ?? ""
+        self.tekst.text = currentElement?.tekst ?? ""
+        self.title = currentElement?.nazwa ?? ""
     }
     
     override func didReceiveMemoryWarning() {
