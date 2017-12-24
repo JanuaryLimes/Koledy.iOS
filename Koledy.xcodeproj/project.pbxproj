@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E7096FDB1FEFE1FC00C88251 /* KoledaXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7096FDA1FEFE1FC00C88251 /* KoledaXmlParser.swift */; };
 		E7FABCF31FEEBE5E006C27B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FABCF21FEEBE5E006C27B4 /* AppDelegate.swift */; };
 		E7FABCF51FEEBE5E006C27B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FABCF41FEEBE5E006C27B4 /* ViewController.swift */; };
 		E7FABCF81FEEBE5E006C27B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7FABCF61FEEBE5E006C27B4 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E7096FDA1FEFE1FC00C88251 /* KoledaXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoledaXmlParser.swift; sourceTree = "<group>"; };
 		E7FABCEF1FEEBE5E006C27B4 /* Koledy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Koledy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7FABCF21FEEBE5E006C27B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7FABCF41FEEBE5E006C27B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E7096FD91FEFE1D100C88251 /* XmlParser */ = {
+			isa = PBXGroup;
+			children = (
+				E7096FDA1FEFE1FC00C88251 /* KoledaXmlParser.swift */,
+			);
+			path = XmlParser;
+			sourceTree = "<group>";
+		};
 		E7FABCE61FEEBE5E006C27B4 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +66,7 @@
 		E7FABCF11FEEBE5E006C27B4 /* Koledy */ = {
 			isa = PBXGroup;
 			children = (
+				E7096FD91FEFE1D100C88251 /* XmlParser */,
 				E7FABD061FEECAB0006C27B4 /* Model */,
 				E7FABCF21FEEBE5E006C27B4 /* AppDelegate.swift */,
 				E7FABCF41FEEBE5E006C27B4 /* ViewController.swift */,
@@ -149,6 +160,7 @@
 			files = (
 				E7FABD081FEECACE006C27B4 /* Koleda.swift in Sources */,
 				E7FABCF51FEEBE5E006C27B4 /* ViewController.swift in Sources */,
+				E7096FDB1FEFE1FC00C88251 /* KoledaXmlParser.swift in Sources */,
 				E7FABCF31FEEBE5E006C27B4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
